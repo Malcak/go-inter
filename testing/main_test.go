@@ -44,3 +44,35 @@ func TestGetMax(t *testing.T) {
 		}
 	}
 }
+
+// go test
+// go test -cover
+// go test -coverprofile=cover.out
+// go tool cover -func=coverage.out
+// go tool cover -html=coverage.out
+
+func TestFibonacci(t *testing.T) {
+	tables := []struct {
+		a int
+		n int
+	} {
+		{ 0, 0 },
+		{ 1, 1 },
+		{ 8, 21 },
+		{ 50, 12586269025 },
+	}
+
+	for _, item := range tables {
+		fib := Fibonacci(item.a)
+		if fib != item.n {
+			t.Errorf("Fibonacci was incorrect, got %d expected %d", fib, item.n)
+		}
+	}
+}
+
+// go test -cpuprofile=cpu.out
+// go tool pprof cpu.out
+// (pprof) top
+// (pprof) list Fibonacci
+// (pprof) web
+// (pprof) pdf
